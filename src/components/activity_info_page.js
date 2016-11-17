@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setActivityName } from '../actions/index';
+import { Link } from 'react-router';
 
 import SelectionBox from './selection_box';
 
@@ -32,7 +33,7 @@ class ActivityInfoPage extends Component {
         </label>
         <SelectionBox label="Min Age" infoType="minAge" defaultAge="1" />
         <SelectionBox label="Max Age" infoType="maxAge" defaultAge="12" />
-        <a type="submit" className="button">Next</a>
+        <Link to='/venue' className="button">Next</Link>
       </form>
     );
   }
