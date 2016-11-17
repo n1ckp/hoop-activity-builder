@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setActivityName } from '../actions/index';
+
 import SelectionBox from './selection_box';
 
-export default class ActivityInfoPage extends Component {
+class ActivityInfoPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +16,7 @@ export default class ActivityInfoPage extends Component {
 
   handleNameChange(name) {
     this.setState({name});
-    // TODO: set activity name on glabal state
+    this.props.setActivityName(name);
   }
 
   render() {
@@ -34,3 +37,11 @@ export default class ActivityInfoPage extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    activity: state.activity
+  }
+}
+
+export default connect(mapStateToProps, { setActivityName })(ActivityInfoPage);

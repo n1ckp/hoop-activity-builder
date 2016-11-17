@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setActivityMinAge, setActivityMaxAge } from '../actions/index';
 
-export default class SelectionBox extends Component {
+class SelectionBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +22,7 @@ export default class SelectionBox extends Component {
 
   handleSelectChange(value) {
     this.setState({value});
-    // TODO: set max/min age on global state (use this.props.infoType and value)
+    (this.props.infoType === "minAge") ? this.props.setActivityMinAge(value) : this.props.setActivityMaxAge(value);
   }
 
   render() {
@@ -33,3 +35,11 @@ export default class SelectionBox extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    activity: state.activity
+  }
+}
+
+export default connect(mapStateToProps, { setActivityMinAge, setActivityMaxAge })(SelectionBox);
