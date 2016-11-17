@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import {
   setActivityBuildingUnit, setActivityBuildingName, setActivityStreetNumber,
   setActivityStreetName, setActivityTown, setActivityPostcode
@@ -29,6 +30,7 @@ class VenueForm extends Component {
         <FormInput type="text" label="Street Name" handleUpdateState={setActivityStreetName} />
         <FormInput type="text" label="Town" handleUpdateState={setActivityTown} />
         <FormInput type="text" label="Postcode" handleUpdateState={setActivityPostcode} />
+        <Link to="/confirm" className="button">Next</Link>
       </form>
     );
   }

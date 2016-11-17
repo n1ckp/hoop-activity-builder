@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setActivityName } from '../actions/index';
+import { setActivityName, setActivityMinAge, setActivityMaxAge } from '../actions/index';
 import { Link } from 'react-router';
 
 import SelectionBox from './selection_box';
@@ -31,8 +31,8 @@ class ActivityInfoPage extends Component {
             onChange={event => {this.handleNameChange(event.target.value)}}>
           </input>
         </label>
-        <SelectionBox label="Min Age" infoType="minAge" defaultAge="1" />
-        <SelectionBox label="Max Age" infoType="maxAge" defaultAge="12" />
+        <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" />
+        <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" />
         <Link to='/venue' className="button">Next</Link>
       </form>
     );
@@ -45,4 +45,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { setActivityName })(ActivityInfoPage);
+export default connect(mapStateToProps, { setActivityName, setActivityMinAge, setActivityMaxAge })(ActivityInfoPage);

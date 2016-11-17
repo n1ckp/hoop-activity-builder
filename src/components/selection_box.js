@@ -22,7 +22,11 @@ class SelectionBox extends Component {
 
   handleSelectChange(value) {
     this.setState({value});
-    (this.props.infoType === "minAge") ? this.props.setActivityMinAge(value) : this.props.setActivityMaxAge(value);
+    this.props.dispatch(this.props.updateAge(value));
+  }
+
+  componentDidMount() {
+    this.props.dispatch(this.props.updateAge(this.props.defaultAge));
   }
 
   render() {
@@ -36,10 +40,4 @@ class SelectionBox extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activity: state.activity
-  }
-}
-
-export default connect(mapStateToProps, { setActivityMinAge, setActivityMaxAge })(SelectionBox);
+export default connect()(SelectionBox);

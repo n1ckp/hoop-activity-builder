@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class FormInput extends Component {
+class FormInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,3 +22,5 @@ export default class FormInput extends Component {
     );
   }
 }
+
+export default connect()(FormInput);
