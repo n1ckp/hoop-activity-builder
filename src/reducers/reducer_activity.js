@@ -15,7 +15,6 @@ export default function(state=INITIAL_STATE, action) {
     case SET_ACTIVITY_MAX_AGE:
       return { ...state, max_age: action.payload };
     case SET_ACTIVITY_BUILDING_UNIT:
-    debugger;
       return { ...state, building_unit: action.payload };
     case SET_ACTIVITY_BUILDING_NAME:
       return { ...state, building_name: action.payload };
