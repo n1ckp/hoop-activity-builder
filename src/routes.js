@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './components/app';
-
-class Dummy extends Component {
-  render() {
-    return (
-      <div>Dummy content.</div>
-    );
-  }
-}
+import ActivityInfoPage from './components/activity_info_page';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Dummy} />
+    <IndexRoute component={ActivityInfoPage} />
   </Route>
 );
