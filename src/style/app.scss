@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+
+.main-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.confirm-left {
+  text-align: right;
+  font-weight: bold;
+}
+
+.button {
+  width: 100px;
+  float: right;
+  &.secondary {
+    float: left;
+  }
+}

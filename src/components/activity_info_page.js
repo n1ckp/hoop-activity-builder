@@ -9,12 +9,15 @@ import FormInput from './form_input';
 class ActivityInfoPage extends Component {
   render() {
     return (
-      <form>
-        <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} />
-        <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" />
-        <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" />
-        <Link to='/venue' className="button">Next</Link>
-      </form>
+      <div>
+        <h1>Basic Activity Info</h1>
+        <form>
+          <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} />
+          <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" />
+          <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" />
+          <Link to='/venue' className="button">Next</Link>
+        </form>
+      </div>
     );
   }
 }
