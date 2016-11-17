@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
+import { resetActivity } from '../actions/index';
 
 class ConfirmField extends Component {
   render() {
@@ -14,6 +15,11 @@ class ConfirmField extends Component {
 }
 
 class ConfirmPage extends Component {
+  handleConfirm() {
+    this.props.resetActivity();
+    browserHistory.push('/');
+  }
+
   render() {
     return (
       <div>
@@ -26,7 +32,7 @@ class ConfirmPage extends Component {
         <ConfirmField name="Street Name" value={this.props.activity.street_name} />
         <ConfirmField name="Town" value={this.props.activity.town} />
         <ConfirmField name="Postcode" value={this.props.activity.postcode} />
-        <Link to="/" className="button">Confirm</Link>
+        <a className="button" onClick={event => {this.handleConfirm()}}>Confirm</a>
       </div>
     );
   }
@@ -38,4 +44,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(ConfirmPage);
+export default connect(mapStateToProps, { resetActivity })(ConfirmPage);

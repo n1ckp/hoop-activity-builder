@@ -7,6 +7,7 @@ export const SET_ACTIVITY_STREET_NUMBER = 'SET_ACTIVITY_STREET_NUMBER';
 export const SET_ACTIVITY_STREET_NAME = 'SET_ACTIVITY_STREET_NAME';
 export const SET_ACTIVITY_TOWN = 'SET_ACTIVITY_TOWN';
 export const SET_ACTIVITY_POSTCODE = 'SET_ACTIVITY_POSTCODE';
+export const RESET_ACTIVITY = 'RESET_ACTIVITY';
 
 export function setActivityName(name) {
   return {
@@ -69,4 +70,10 @@ export function setActivityPostcode(postcode) {
     type: SET_ACTIVITY_POSTCODE,
     payload: postcode
   };
+}
+
+export function resetActivity() {
+  return {
+    type: RESET_ACTIVITY
+  }
 }
