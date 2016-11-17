@@ -63,3 +63,10 @@ export function setActivityTown(town) {
     payload: town
   };
 }
+
+export function setActivityPostcode(postcode) {
+  return {
+    type: SET_ACTIVITY_POSTCODE,
+    payload: postcode
+  };
+}
