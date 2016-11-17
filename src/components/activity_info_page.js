@@ -12,9 +12,9 @@ class ActivityInfoPage extends Component {
       <div>
         <h1>Basic Activity Info</h1>
         <form>
-          <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} />
-          <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" />
-          <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" />
+          <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} value={this.props.activity.name} />
+          <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" value={this.props.activity.min_age} />
+          <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" value={this.props.activity.max_age} />
           <Link to='/venue' className="button">Next</Link>
         </form>
       </div>
@@ -22,4 +22,10 @@ class ActivityInfoPage extends Component {
   }
 }
 
-export default connect()(ActivityInfoPage);
+function mapStateToProps(state) {
+  return {
+    activity: state.activity
+  }
+}
+
+export default connect(mapStateToProps)(ActivityInfoPage);

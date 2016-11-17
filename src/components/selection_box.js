@@ -6,7 +6,7 @@ class SelectionBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.defaultAge
+      value: this.props.value ? this.props.value : this.props.defaultAge
     };
   }
 
