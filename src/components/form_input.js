@@ -11,7 +11,7 @@ class FormInput extends Component {
 
   handleChange(value) {
     this.setState({value});
-    this.props.handleUpdateState(value);
+    this.props.dispatch(this.props.handleUpdateState(value));
   }
 
   render() {
