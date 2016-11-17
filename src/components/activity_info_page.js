@@ -4,33 +4,13 @@ import { setActivityName, setActivityMinAge, setActivityMaxAge } from '../action
 import { Link } from 'react-router';
 
 import SelectionBox from './selection_box';
+import FormInput from './form_input';
 
 class ActivityInfoPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      minAge: "",
-      maxAge: ""
-    };
-  }
-
-  handleNameChange(name) {
-    this.setState({name});
-    this.props.setActivityName(name);
-  }
-
   render() {
     return (
       <form>
-        <label>Activity Name
-          <input
-            type="text"
-            placeholder="Enter an activity name"
-            value={this.state.name}
-            onChange={event => {this.handleNameChange(event.target.value)}}>
-          </input>
-        </label>
+        <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} />
         <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" />
         <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" />
         <Link to='/venue' className="button">Next</Link>
@@ -39,10 +19,4 @@ class ActivityInfoPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activity: state.activity
-  }
-}
-
-export default connect(mapStateToProps, { setActivityName, setActivityMinAge, setActivityMaxAge })(ActivityInfoPage);
+export default connect()(ActivityInfoPage);

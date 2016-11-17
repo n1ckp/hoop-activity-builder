@@ -9,18 +9,6 @@ import {
 import FormInput from './form_input';
 
 class VenueForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      building_unit: "",
-      building_name: "",
-      street_number: "",
-      street_name: "",
-      town: "",
-      postcode: "",
-    };
-  }
-
   render() {
     return (
       <form>
@@ -36,13 +24,4 @@ class VenueForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activity: state.activity
-  }
-}
-
-export default connect(mapStateToProps, {
-  setActivityBuildingUnit, setActivityBuildingName, setActivityStreetNumber,
-  setActivityStreetName, setActivityTown, setActivityPostcode
-})(VenueForm);
+export default connect()(VenueForm);
