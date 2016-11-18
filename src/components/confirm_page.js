@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 import { resetActivity } from '../actions/index';
 
+import VenueMap from './venue_map';
+
 class ConfirmField extends Component {
   render() {
     return (
@@ -33,6 +35,7 @@ class ConfirmPage extends Component {
         <ConfirmField name="Street Name" value={this.props.activity.street_name} />
         <ConfirmField name="Town" value={this.props.activity.town} />
         <ConfirmField name="Postcode" value={this.props.activity.postcode} />
+        <VenueMap activity={this.props.activity} />
         <Link to="/venue" className="button secondary">Back</Link>
         <a className="button" onClick={event => {this.handleConfirm()}}>Confirm</a>
       </div>
