@@ -13,8 +13,9 @@ export default class VenueMap extends Component {
   }
 
   componentDidMount() {
+    let { street_number, street_name, town, postcode } = this.props.activity;
     const query = {
-      address: `${this.props.activity.street_number} ${this.props.activity.street_name} ${this.props.activity.town} ${this.props.activity.postcode}`,
+      address: `${street_number} ${street_name} ${town} ${postcode}`,
       key: "AIzaSyBHKx-iAjuekb0croroKNJLttnQkgF_BEs"
     };
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?${querystring.stringify(query)}`)
