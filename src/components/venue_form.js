@@ -1,30 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import {
-  setActivityBuildingUnit, setActivityBuildingName, setActivityStreetNumber,
-  setActivityStreetName, setActivityTown, setActivityPostcode
-} from '../actions/index';
-
-import FormInput from './form_input';
+import { setActivityVenue } from '../actions/index';
+import { Field, reduxForm } from 'redux-form';
+import { browserHistory } from 'react-router';
 
 class VenueForm extends Component {
+  handleCustomSubmit(values) {
+    this.props.setActivityVenue(values);
+    browserHistory.push('/confirm');
+  }
+
   render() {
+    const { handleSubmit, activity } = this.props;
     return (
       <div>
         <h1>Activity Venue</h1>
-        <form>
-          <FormInput type="text" label="Building Unit (Optional)" handleUpdateState={setActivityBuildingUnit} value={this.props.activity.building_unit} />
-          <FormInput type="text" label="Building Name (Optional)" handleUpdateState={setActivityBuildingName} value={this.props.activity.building_name} />
-          <FormInput type="text" label="Street Number" handleUpdateState={setActivityStreetNumber} value={this.props.activity.street_number} />
-          <FormInput type="text" label="Street Name" handleUpdateState={setActivityStreetName} value={this.props.activity.street_name} />
-          <FormInput type="text" label="Town" handleUpdateState={setActivityTown} value={this.props.activity.town} />
-          <FormInput type="text" label="Postcode" handleUpdateState={setActivityPostcode} value={this.props.activity.postcode} />
+        <form onSubmit={handleSubmit(this.handleCustomSubmit.bind(this))}>
+          <label>Building Unit (Optional)
+            <Field name="building_unit" type="text" component="input" />
+          </label>
+          <label>Building Name (Optional)
+            <Field name="building_name" type="text" component="input" />
+          </label>
+          <label>Street Number
+            <Field name="street_number" type="text" component="input" />
+          </label>
+          <label>Street Name
+            <Field name="street_name" type="text" component="input" />
+          </label>
+          <label>Town
+            <Field name="town" type="text" component="input" />
+          </label>
+          <label>Postcode
+            <Field name="postcode" type="text" component="input" />
+          </label>
           <Link to="/" className="button secondary">Back</Link>
-          <Link to="/confirm" className="button">Next</Link>
+          <button type="submit" className="button">Next</button>
         </form>
       </div>
-
     );
   }
 }
@@ -32,7 +46,14 @@ class VenueForm extends Component {
 function mapStateToProps(state) {
   return {
     activity: state.activity
-  }
+  };
 }
 
-export default connect(mapStateToProps)(VenueForm);
+VenueForm = connect(mapStateToProps, { setActivityVenue })(VenueForm);
+
+export default reduxForm({
+  form: 'activity_venue'
+},
+state => {
+  initialValues: state.activity
+})(VenueForm);

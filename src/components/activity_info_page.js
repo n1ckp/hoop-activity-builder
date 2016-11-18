@@ -1,37 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setActivityName, setActivityMinAge, setActivityMaxAge } from '../actions/index';
-import { Link } from 'react-router';
-
-import SelectionBox from './selection_box';
-import FormInput from './form_input';
+import { setActivityBasicInfo } from '../actions/index';
+import { Field, reduxForm } from 'redux-form';
+import { browserHistory } from 'react-router';
 
 class ActivityInfoPage extends Component {
+  selectBoxOptions() {
+    var options = [<option key="0"></option>];
+    for (var i=1; i<=12; i++) {
+      options.push(
+        <option key={i} value={i}>{(i === 1) ? `${i} Year` : `${i} Years`}</option>
+      );
+    }
+    return options;
+  }
+
+  handleCustomSubmit(values) {
+    this.props.setActivityBasicInfo(values);
+    browserHistory.push('/venue');
+  }
+
   render() {
+    const { handleSubmit } = this.props;
     return (
       <div>
         <h1>Basic Activity Info</h1>
-        <form>
-          <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} value={this.props.activity.name} />
+        <form onSubmit={handleSubmit(this.handleCustomSubmit.bind(this))}>
+          <label>Activity Name
+            <Field name="name" type="text" component="input" />
+          </label>
+
           <div className="row">
             <div className="small-6 columns">
-              <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" value={this.props.activity.min_age} />
+              <label>Minimum Age
+                <Field name="min_age" component="select">
+                  { this.selectBoxOptions() }
+                </Field>
+              </label>
             </div>
             <div className="small-6 columns">
-              <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" value={this.props.activity.max_age} />
+              <label>Maximum Age
+                <Field name="max_age" component="select">
+                  { this.selectBoxOptions() }
+                </Field>
+              </label>
             </div>
           </div>
-          <Link to='/venue' className="button">Next</Link>
+          <button type="submit" className="button">Next</button>
         </form>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    activity: state.activity
-  }
-}
+ActivityInfoPage = connect(null, { setActivityBasicInfo })(ActivityInfoPage);
 
-export default connect(mapStateToProps)(ActivityInfoPage);
+export default reduxForm({
+  form: 'activity_basic_info'
+})(ActivityInfoPage);

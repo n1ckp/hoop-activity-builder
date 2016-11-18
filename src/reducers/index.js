@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import ActivityReducer from './reducer_activity';
 import { RESET_ACTIVITY } from '../actions/index';
 
 const appReducer = combineReducers({
-  activity: ActivityReducer
+  activity: ActivityReducer,
+  form: formReducer
 });
 
 const rootReducer = (state, action) => {
