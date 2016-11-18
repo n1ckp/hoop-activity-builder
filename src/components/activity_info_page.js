@@ -13,8 +13,14 @@ class ActivityInfoPage extends Component {
         <h1>Basic Activity Info</h1>
         <form>
           <FormInput type="text" label="Activity Name" handleUpdateState={setActivityName} value={this.props.activity.name} />
-          <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" value={this.props.activity.min_age} />
-          <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" value={this.props.activity.max_age} />
+          <div className="row">
+            <div className="small-6 columns">
+              <SelectionBox label="Min Age" updateAge={setActivityMinAge} defaultAge="1" value={this.props.activity.min_age} />
+            </div>
+            <div className="small-6 columns">
+              <SelectionBox label="Max Age" updateAge={setActivityMaxAge} defaultAge="12" value={this.props.activity.max_age} />
+            </div>
+          </div>
           <Link to='/venue' className="button">Next</Link>
         </form>
       </div>
