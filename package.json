@@ -22,7 +22,9 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
     "css-loader": "^0.25.0",
+    "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.6.0",
     "mocha": "^3.1.2",
     "node-sass": "^3.13.0",
@@ -41,6 +43,8 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.8.3",
     "querystring": "^0.2.0",
     "react-google-maps": "^4.11.0",
     "redux-form": "^6.2.0"

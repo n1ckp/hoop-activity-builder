@@ -16,7 +16,7 @@ class ActivityInfoPage extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
+      <div className="activity-info-page">
         <h1>Basic Activity Info</h1>
         <form onSubmit={handleSubmit(this.handleCustomSubmit.bind(this))}>
           <Field name="name" type="text" component={FormInput} label="Activity Name*" placeholder="e.g. Arts and Crafts" />
