@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const FormInput = ({ input, label, type, meta: { touched, error, warning } }) => {
+export const FormInput = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => {
   const isInvalid = touched && error;
   return (
     <label className={isInvalid ? "error" : null}>{label}
-      <input {...input} className={isInvalid ? "is-invalid-input" : null} placeholder={label} type={type}/>
+      <input {...input} className={isInvalid ? "is-invalid-input" : null} placeholder={placeholder} type={type}/>
       {touched && ((isInvalid && <small className="error">{error}</small>) || (warning && <small className="error">{warning}</small>))}
     </label>
   );
@@ -20,11 +20,11 @@ const selectBoxOptions = () => {
   return options;
 }
 
-export const FormSelect = ({ input, label, type, meta: { touched, error, warning } }) => {
+export const FormSelect = ({ input, label, placeholder, type, meta: { touched, error, warning } }) => {
   const isInvalid = touched && error;
   return (
     <label className={isInvalid ? "error" : null}>{label}
-      <select {...input} className={isInvalid ? "is-invalid-input" : null} placeholder={label} type={type}>
+      <select {...input} className={isInvalid ? "is-invalid-input" : null} placeholder={placeholder} type={type}>
         { selectBoxOptions() }
       </select>
       {touched && ((isInvalid && <small className="error">{error}</small>) || (warning && <small className="error">{warning}</small>))}

@@ -19,8 +19,7 @@ class ActivityInfoPage extends Component {
       <div>
         <h1>Basic Activity Info</h1>
         <form onSubmit={handleSubmit(this.handleCustomSubmit.bind(this))}>
-          <Field name="name" type="text" component={FormInput} label="Activity Name*" />
-
+          <Field name="name" type="text" component={FormInput} label="Activity Name*" placeholder="e.g. Arts and Crafts" />
           <div className="row">
             <div className="small-6 columns">
               <Field name="min_age" component={FormSelect} label="Minimum Age*" />
@@ -36,7 +35,7 @@ class ActivityInfoPage extends Component {
   }
 }
 
-function validate(values) {
+const validate = (values) => {
   const { name, min_age, max_age } = values;
   var errors = {};
   if(!name) {
