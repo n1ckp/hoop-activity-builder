@@ -4,16 +4,9 @@ import { setActivityBasicInfo } from '../actions/index';
 import { Field, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
 
+import { FormInput, FormSelect } from './form_input';
+
 class ActivityInfoPage extends Component {
-  selectBoxOptions() {
-    var options = [<option key="0"></option>];
-    for (var i=1; i<=12; i++) {
-      options.push(
-        <option key={i} value={i}>{(i === 1) ? `${i} Year` : `${i} Years`}</option>
-      );
-    }
-    return options;
-  }
 
   handleCustomSubmit(values) {
     this.props.setActivityBasicInfo(values);
@@ -26,24 +19,14 @@ class ActivityInfoPage extends Component {
       <div>
         <h1>Basic Activity Info</h1>
         <form onSubmit={handleSubmit(this.handleCustomSubmit.bind(this))}>
-          <label>Activity Name
-            <Field name="name" type="text" component="input" />
-          </label>
+          <Field name="name" type="text" component={FormInput} label="Activity Name*" />
 
           <div className="row">
             <div className="small-6 columns">
-              <label>Minimum Age
-                <Field name="min_age" component="select">
-                  { this.selectBoxOptions() }
-                </Field>
-              </label>
+              <Field name="min_age" component={FormSelect} label="Minimum Age*" />
             </div>
             <div className="small-6 columns">
-              <label>Maximum Age
-                <Field name="max_age" component="select">
-                  { this.selectBoxOptions() }
-                </Field>
-              </label>
+              <Field name="max_age" component={FormSelect} label="Maximum Age*" />
             </div>
           </div>
           <button type="submit" className="button">Next</button>
@@ -53,8 +36,28 @@ class ActivityInfoPage extends Component {
   }
 }
 
+function validate(values) {
+  const { name, min_age, max_age } = values;
+  var errors = {};
+  if(!name) {
+    errors.name = "Required";
+  }
+  if(!min_age) {
+    errors.min_age = "Required";
+  }
+  if(!max_age) {
+    errors.max_age = "Required";
+  }
+  if((min_age && max_age) && (min_age > max_age)) {
+    errors.min_age = "Must be no more than max age"
+    errors.max_age = "Must be at least the min age"
+  }
+  return errors;
+}
+
 ActivityInfoPage = connect(null, { setActivityBasicInfo })(ActivityInfoPage);
 
 export default reduxForm({
-  form: 'activity_basic_info'
+  form: 'activity_basic_info',
+  validate
 })(ActivityInfoPage);

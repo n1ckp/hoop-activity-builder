@@ -2,6 +2,14 @@ h1 {
   text-align: center;
 }
 
+input, select {
+  margin-bottom: 0 !important;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
 .main-container {
   max-width: 500px;
   margin: 0 auto;
@@ -26,4 +34,8 @@ h1 {
   height: 400px;
   display: block;
   padding: 10px;
+}
+
+.error {
+  color: red;
 }
