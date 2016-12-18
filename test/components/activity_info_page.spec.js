@@ -37,7 +37,7 @@ describe("ActivityInfoPage", function() {
     it("shows errors if Min Age is more than Max Age", function() {
       let componentMinAge = rootComponent.find("select[name='min_age']");
       let componentMaxAge = rootComponent.find("select[name='max_age']");
-      componentMinAge.simulate('change', "4");
+      componentMinAge.simulate('change', "10");
       componentMaxAge.simulate('change', "3");
       rootComponent.find('form').simulate('submit');
       expect(componentMinAge.parent().find('small').text()).to.equal("Must be no more than max age");

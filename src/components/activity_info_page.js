@@ -47,7 +47,7 @@ const validate = (values) => {
   if(!max_age) {
     errors.max_age = "Required";
   }
-  if((min_age && max_age) && (min_age > max_age)) {
+  if((min_age && max_age) && (parseInt(min_age) > parseInt(max_age))) {
     errors.min_age = "Must be no more than max age"
     errors.max_age = "Must be at least the min age"
   }
